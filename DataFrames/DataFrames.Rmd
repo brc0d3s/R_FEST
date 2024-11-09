@@ -1,0 +1,75 @@
+```{r}
+patient_df <- data.frame(
+  id = c(10000,4599,23934,54647),
+  names = c("Brian","Tukey","Tevin","derick"),
+  status = c("mad","p.Mad","normal","mad")
+)
+```
+
+```{r}
+print(patient_df)
+```
+
+```{r}
+summary(patient_df)
+```
+
+```{r}
+str(patient_df)
+```
+
+```{r}
+patient_df[1]
+```
+
+```{r}
+patient_df[["status"]]
+```
+
+```{r}
+patient_df$name
+```
+
+```{r}
+patient_df <- rbind(patient_df,c(5000,"Paul","p.Mad"))
+patient_df
+```
+
+```{r}
+patient_df <- cbind(patient_df,ratings = c(3.4,4.4,1.9,5.0,4.7))
+patient_df
+```
+
+```{r}
+newPatient_df <- patient_df[-c(3),-c(3)]
+newPatient_df
+```
+
+```{r}
+dim(newPatient_df)
+```
+
+```{r}
+ncol(newPatient_df)
+nrow(newPatient_df)
+```
+
+# Using CSV
+
+```{r}
+tea_data <- head(read.csv("kenyan_cash_crops_conditions.csv"),10)
+tea_data
+```
+
+```{r}
+class(tea_data$label)
+crops <- c("Mango","Banana","Orange","Guava","Pawpaw","Melon","Pineapple","Pumpkin","Peas","Green Grams")
+
+tea_data$label <- crops
+
+tea_data$label
+```
+
+```{r}
+
+```
