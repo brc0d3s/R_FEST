@@ -1,0 +1,382 @@
+# R Vectors
+
+A vector is simply a list of items that are of the same type.
+
+To combine the list of items to a vector, use the `c()` function and separate the items by a comma.
+
+1.  create a vector variable called **fruits**, that combine strings:
+
+    ```{r}
+    fruits <-  c("Apple","Orange","Lemon","Watermelon")
+
+    print(fruits)
+    ```
+
+2.  create a vector marks that combines numerical values:
+
+    ```{r}
+    marks <- c(34,56,78,34,56,55)
+
+    print(marks)
+    ```
+
+3.  create a vector **ages** with numerical values in a sequence, use the `:` operator:
+
+    ```{r}
+    ages <- (32.7:36.9)
+
+    print(ages)
+    ```
+
+4.  create a vector of logical values:
+
+    ```{r}
+    logics <- c(TRUE,FALSE,TRUE,TRUE,TRUE,FALSE)
+
+    print(logics)
+    ```
+
+## Vector Functions and Operations
+
+```{r}
+fruits <- c("banana", "apple", "orange", "mango", "lemon")
+
+length(fruits)
+sort(fruits)
+fruits[1]
+fruits[c(1, 3)]
+fruits[1] <- "pear"
+fruits
+```
+
+## Repeat Vectors
+
+To repeat vectors, use the `rep()` function:
+
+```{r}
+ages <- rep(c(45,67,78),each = 2)
+
+print(ages)
+```
+
+```{r}
+nums <- rep(c(10L,34L,56L), times = 3)
+
+print(nums)
+```
+
+```{r}
+repeat_indepent <- rep(c(1,2,3), times = c(5,2,1))
+
+repeat_indepent
+```
+
+### Generating Sequenced Vectors
+
+To create a vector with numerical values in a sequence with the `:` operator:
+
+```{r}
+numbers <- 1:23
+
+numbers
+```
+
+To make bigger or smaller steps in a sequence, use the `seq()` function:
+
+```{r}
+agesp <- seq(from = 10, to = 450, by = 45)
+
+
+agesp
+```
+
+**Note:** The `seq()` function has three parameters: `from` is where the sequence starts, `to` is where the sequence stops, and `by` is the interval of the sequence.
+
+# R Lists
+
+A list in R can contain many different data types inside it. A list is a collection of data which is ordered and changeable.
+
+To create a list, use the `list()` function:
+
+```{r}
+cars <- list("Benz","Suzuki","V8",4567)
+
+class(cars)
+cars
+```
+
+### List functions and Operations
+
+```{r}
+cars[1]
+cars[3] = "Toyota"
+cars
+length(cars)
+"Volvo" %in% cars
+append("Voxy",cars)
+cars
+```
+
+```{r}
+append(cars, "volvo", after = 2)
+cars
+
+newlist <- cars[-1]
+
+# Print the new list
+newlist
+
+```
+
+## Range of Indexes
+
+**Note:** The search will start at index 2 (included) and end at index 5 (included).
+
+Remember that the first item has index 1.
+
+```{r}
+thislist <- list("apple", "banana", "cherry", "orange", "kiwi", "melon", "mango")
+
+(thislist)[2:5]
+```
+
+## Join Two Lists
+
+There are several ways to join, or concatenate, two or more lists in R.
+
+The most common way is to use the `c()` function, which combines two elements together:
+
+```{r}
+list1 <- list("a", "b", "c")
+list2 <- list(1,2,3)
+list3 <- c(list1,list2)
+
+list3
+```
+
+# R Matrices
+
+A matrix is a two dimensional data set with columns and rows.
+
+A column is a vertical representation of data, while a row is a horizontal representation of data.
+
+A matrix can be created with the `matrix()` function. Specify the `nrow` and `ncol` parameters to get the amount of rows and columns:
+
+```{r}
+marksMatrix <- matrix(c(23, 56, 89, 65, 45, 56, 43, 56,78,98,65,43), nrow=4, ncol=3)
+print(marksMatrix)
+```
+
+**Note:** Remember the `c()` function is used to concatenate items together.
+
+### Matrices Functions and operations
+
+```{r}
+marksMatrix[1, 2]
+marksMatrix[3,]
+marksMatrix[,2]
+marksMatrix[c(2,4),]
+marksMatrix[,c(1,3)]
+
+```
+
+## Add Rows and Columns
+
+Use the `cbind()` function to add additional columns in a Matrix:
+
+```{r}
+newMatrix <- cbind(marksMatrix,c(56,98,78,43))
+
+newMatrix
+```
+
+**Note:** The cells in the new column must be of the same length as the existing matrix.
+
+Use the `rbind()` function to add additional rows in a Matrix:
+
+```{r}
+nMatrix <- rbind(newMatrix,c(45,67,87,32))
+nMatrix
+```
+
+## Remove Rows and Columns
+
+Use the `c()` function to remove rows and columns in a Matrix:
+
+```{r}
+#Remove the first row and the first column
+tmatrix <- nMatrix[-c(1), -c(1)]
+
+tmatrix
+```
+
+## Number of Rows and Columns
+
+Use the `dim()` function to find the number of rows and columns in a Matrix:
+
+```{r}
+dim(tmatrix)
+```
+
+## Matrix Length
+
+Use the `length()` function to find the dimension of a Matrix:
+
+```{r}
+print(paste("The length is:",length(tmatrix)))
+
+# Looping through
+for (rows in 1:nrow(tmatrix)) {
+  for (columns in 1:ncol(tmatrix)) {
+    print(tmatrix[rows, columns])
+  }
+}
+```
+
+## Combine two Matrices
+
+Again, you can use the `rbind()` or `cbind()` function to combine two or more matrices together:
+
+```{r}
+# Combine matrices
+Matrix1 <- matrix(c("apple", "banana", "cherry", "grape"), nrow = 2, ncol = 2)
+Matrix2 <- matrix(c("orange", "mango", "pineapple", "watermelon"), nrow = 2, ncol = 2)
+
+# Adding it as a rows
+Matrix_Combined <- rbind(Matrix1, Matrix2)
+Matrix_Combined
+
+# Adding it as a columns
+Matrix_Combined <- cbind(Matrix1, Matrix2)
+Matrix_Combined
+
+```
+
+# R Arrays
+
+Compared to matrices, arrays can have more than two dimensions.
+
+We can use the `array()` function to create an array, and the `dim` parameter to specify the dimensions:
+
+```{r}
+x <- c(3:18)
+
+xarrays <- array(x,dim=c(2,4,2))
+xarrays
+
+```
+
+#### Example Explained
+
+In the example above we create an array with the values 1 to 24.
+
+How does `dim=c(4,3,2)` work?\
+The first and second number in the bracket specifies the amount of rows and columns.\
+The last number in the bracket specifies how many dimensions we want.
+
+**Note:** Arrays can only have one data type.
+
+## Access Array Items
+
+```{r}
+xarrays[1,3,2]
+```
+
+The syntax is as follow: array[row position, column position, matrix level]
+
+You can also access the whole row or column from a matrix in an array, by using the `c()` function:
+
+```{r}
+xarrays[2,1,]
+
+cat("\n\n")
+
+xarrays[,1,1]
+
+cat("\n\n")
+# Selecting multiple indices: xarrays[,c(1,2),1] (selects columns 1 and 2).
+xarrays[,c(1,2),1]
+
+cat("\n\n")
+# Combining indices dynamically: xarrays[,c(1:3),1] (selects columns 1 through 3).
+xarrays[,c(1:3),1]
+```
+
+A comma (,) before c() means that we want to access the column.
+
+A comma (,) after c() means that we want to access the row.
+
+# R Data Frames
+
+Data Frames are data displayed in a format as a table.
+
+Data Frames can have different types of data inside it. While the first column can be `character`, the second and third can be `numeric` or `logical`. However, each column should have the same type of data.
+
+Use the `data.frame()` function to create a data frame:
+
+```{r}
+employee_data <- data.frame(
+  Name = c("Alice", "Bob", "Charlie","Diana"),
+  Age = c(25, 30, 35,40),
+  Department = c("HR", "Finance", "IT","Marketing"),
+  Is_manager = c(TRUE, FALSE, TRUE, FALSE)
+)
+
+employee_data
+```
+
+Use the `summary()` function to summarize the data from a Data Frame:
+
+```{r}
+summary(employee_data)
+```
+
+## Access Items
+
+We can use single brackets `[ ]`, double brackets `[[ ]]` or `$` to access columns from a data frame:
+
+```{r}
+employee_data[1]
+
+employee_data[["Department"]]
+
+employee_data$Age
+```
+
+# R Factors
+
+Factors are used to categorize data. Examples of factors are:
+
+-   Demography: Male/Female
+
+-   Music: Rock, Pop, Classic, Jazz
+
+-   Training: Strength, Stamina
+
+To create a factor, use the `factor()` function and add a vector as argument:
+
+```{r}
+# Create a factor
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+# Print the factor
+music_genre
+```
+
+You can see from the example above that that the factor has four levels (categories): Classic, Jazz, Pop and Rock.
+
+To only print the levels, use the `levels()` function:
+
+```{r}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"))
+
+levels(music_genre)
+```
+
+You can also set the levels, by adding the `levels` argument inside the `factor()` function:
+
+```{r}
+music_genre <- factor(c("Jazz", "Rock", "Classic", "Classic", "Pop", "Jazz", "Rock", "Jazz"), levels = c("Classic", "Jazz", "Pop", "Rock", "Other"))
+
+levels(music_genre)
+```

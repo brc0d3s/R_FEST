@@ -1,0 +1,76 @@
+1.  R program to accept 2values and display their sum
+
+    ```{r}
+    num1 <- as.numeric(readline(prompt="Enter num1: "))
+    num2 <- as.numeric(readline(prompt="Enter num2:"))
+
+    print(num1 + num2)
+    ```
+
+2\.
+
+```{r}
+x <- c(7, 12, 9, 15, NA, 8, 14, NA, 2, 9, NA, 8)
+
+i <- which(is.na(x))
+i
+
+```
+
+```{r}
+counter <- sum(!is.na(x))
+counter
+```
+
+```{r}
+meanVal <- mean(!is.na(x))
+
+x[is.na(x)] <- meanVal
+
+print(x)
+```
+
+```{r}
+replaceFunct <- function(vect){
+  mvalue <- mean(vect,na.rm = TRUE)
+  vect[is.na(vect)] <- mvalue
+  print(as.integer(vect))
+}
+
+
+y <- c(34L,67L,NA,23L,NA,78L,NA,23L,12L)
+replaceFunct(y)
+```
+
+```{r}
+num1 <- as.numeric(readline(prompt="Enter Num1: "))
+num2 <- as.numeric(readline(prompt="Enter Num2: "))
+
+print(paste("Sum:",num1 + num2))
+print(paste("Product:",num1 * num2))
+```
+
+3\.
+
+```{r}
+fruits <- list("apple","banana","oranges","berry")
+fruits
+```
+
+```{r}
+fruits <- append(fruits,"mango")
+fruits
+```
+
+```{r}
+fruits[4] <- "strawberry"
+fruits
+```
+
+```{r}
+length(fruits)
+```
+
+```{r}
+"grapes" %in% fruits
+```

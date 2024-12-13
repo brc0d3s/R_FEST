@@ -1,0 +1,70 @@
+# R Plotting
+
+The `plot()` function is used to draw points (markers) in a diagram.
+
+The function takes parameters for specifying points in the diagram.
+
+Parameter 1 specifies points on the **x-axis**.
+
+Parameter 2 specifies points on the **y-axis**.
+
+At its simplest, you can use the `plot()` function to plot two numbers against each other:
+
+```{r}
+x <- 1:10
+y <- 21:30
+
+plot(x,y)
+```
+
+## Draw a Line
+
+The `plot()` function also takes a `type` parameter with the value `l` to draw a line to connect all the points in the diagram:
+
+```{r}
+x <- c(3,4,5,6,7,8,9)
+y <- c(1,2,3,4,5,6,7)
+
+plot(x,y,type = "l")
+```
+
+## Plot Labels
+
+The `plot()` function also accept other parameters, such as `main`, `xlab` and `ylab` if you want to customize the graph with a main title and different labels for the x and y-axis:
+
+```{r}
+plot(x,y, main="X labs Graph",xlab = "X axis",ylab="yaxis",type="l")
+```
+
+## Graph Appearance
+
+There are many other parameters you can use to change the appearance of the points.
+
+### Colors
+
+Use `col="color"` to add a color to the points:
+
+```{r}
+speed <- seq(from=12,to=48,by=2)
+time <- seq(from=34,to=89,by=3)
+
+plot(speed,time,type="l",col="blue",main="Speed Against Time",xlab="speed",ylab="time")
+```
+
+### Size
+
+Use `cex=number` to change the size of the points (`1` is default, while `0.5` means 50% smaller, and `2` means 100% larger):
+
+```{r}
+plot(1:10, cex=2)
+```
+
+### Point Shape
+
+Use `pch` with a value from 0 to 25 to change the point shape format:
+
+```{r}
+plot(1:10, pch=25, cex=2)
+```
+
+The values of the `pch` parameter ranges from 0 to 25, which means that we can choose up to 26 different types of point shapes:

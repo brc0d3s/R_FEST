@@ -1,0 +1,195 @@
+### **Comprehensive R Programming Task**
+
+#### **Scenario: Analyzing Student Grades**
+
+You are tasked with creating an R script to process and analyze student grade data for a class of 10 students. Follow these steps:
+
+#### **Step 1: Variables and Vectors**
+
+1.  Create a vector `students` with the names of 10 students (e.g., "Alice", "Bob", etc.).
+
+    ```{r}
+    students <- c("Alice","Bob","Marley","Rick","Ross","Navy","Kenzo","Rich","Mavoko","Jose")
+    students
+    ```
+
+2.  Create a vector `math_grades` with random numbers between 50 and 100, representing each student’s math grade.
+
+    ```{r}
+    math_grades <- as.integer(c(runif(10,min = 50,max = 100)))
+    math_grades
+    ```
+
+3.  Create another vector `science_grades` with random numbers between 50 and 100, representing each student’s science grade.
+
+    ```{r}
+    science_grades <- as.integer(c(runif(10,min = 50,max = 100)))
+    science_grades
+    ```
+
+#### **Step 2: Lists**
+
+4.  Combine `students`, `math_grades`, and `science_grades` into a list called `student_data`.
+
+    ```{r}
+    student_data <- list(students,math_grades,science_grades)
+    student_data
+    ```
+
+#### **Step 3: Matrices**
+
+5.  Create a matrix called `grades_matrix` with 10 rows and 2 columns using `math_grades` and `science_grades`. Label the rows with student names and the columns as "Math" and "Science."
+
+    ```{r}
+    grades_matrix <- matrix(c(math_grades,science_grades),nrow = 10,ncol = 2)
+    colnames(grades_matrix) <- c("Math","Science")
+    grades_matrix
+    ```
+
+#### **Step 4: Data Frames**
+
+6.  Convert `grades_matrix` into a data frame called `grades_df` with columns "Student", "Math", and "Science."
+
+    ```{r}
+    grades_df <- data.frame(
+      Student <- students,
+      Math <- math_grades,
+      Science <- science_grades
+    )
+
+    colnames(grades_df) <- c("Student","Math","Science")
+
+    grades_df
+    ```
+
+7.  Add a new column to `grades_df` called `Average`, which contains the average of each student’s math and science grades.
+
+    ```{r}
+    Average <- (grades_df$Math + grades_df$Science)/2
+    grades_df <- cbind(grades_df,Average)
+    grades_df
+
+    ```
+
+#### **Step 5: Conditional Statements and Loops**
+
+8.  Write a `for` loop that prints each student’s name and whether they passed or failed each subject. A passing grade is 60 or higher.
+
+    ```{r}
+    for(i in 1:nrow(grades_df)){
+      name <- grades_df$Student[i]
+      math <- grades_df$Math[i]
+      science <- grades_df$Science[i]
+      
+      if(math >= 60){
+        mstate = "Pass"
+      }else{
+        mstate = "Fail"
+      }
+      
+      if(science >= 60){
+        sstate = "Pass"
+      }else{
+        sstate = "Fail"
+      }
+      
+      cat("Name:",name,"Math:",mstate,"Science:",sstate,"\n")
+    }
+    ```
+
+9.  Write a function `calculate_grade_category` that takes a numeric grade as input and returns:
+
+    -   "Fail" if the grade is below 60,
+
+    -   "Pass" if the grade is between 60 and 79,
+
+    -   "Distinction" if the grade is 80 or above.
+
+        ```{r}
+        calculate_grade_category <- function(grade){
+          if(grade < 60){
+            "Fail"
+          }else if(grade >= 60 & grade <= 79){
+            "Pass"
+          }else if(grade >= 80){
+            "Distinction"
+          }
+        }
+        ```
+
+10. Use `sapply()` to apply `calculate_grade_category` to the "Average" column in `grades_df` and create a new column called `Grade_Category`.
+
+    ```{r}
+    grades_df$Grade_Category <- sapply(grades_df$Average, calculate_grade_category)
+    ```
+
+#### **Step 6: String Manipulation**
+
+11. Update the "Student" column in `grades_df` to include the phrase "(Top Student)" next to any student with an average above 90.
+
+    ```{r}
+    grades_df$Student <- ifelse(grades_df$Average > 90, paste(grades_df$Student, "(Top Student)"), grades_df$Student)
+    ```
+
+#### **Step 7: File Input/Output**
+
+12. Save the `grades_df` to a CSV file named `student_grades.csv`.
+
+    ```{r}
+    write.csv(grades_df, "student_grades.csv", row.names = FALSE)  # Save to CSV
+    ```
+
+13. Read the file back into R as `grades_df_imported` and print the first few rows to confirm the data was saved and loaded correctly.
+
+    ```{r}
+    grades_df_imported <- read.csv("student_grades.csv")  # Read from CSV
+    print(head(grades_df_imported))  # Print first few rows
+    ```
+
+#### **Step 8: Plotting**
+
+14. Create a bar plot of the average grades for all students. Customize it with:
+
+    -   A title ("Average Grades of Students"),
+
+    -   Labeled axes ("Student Names" and "Average Grade"),
+
+    -   A different color for each bar.
+
+        ```{r}
+        barplot(grades_df$Average, names.arg = grades_df$Student, col = rainbow(10), main = "Average Grades of Students", xlab = "Student Names", ylab = "Average Grade", las = 2)
+        ```
+
+15. Create a scatter plot of math grades vs. science grades. Add:
+
+    -   A title ("Math vs. Science Grades"),
+
+    -   A linear trend line,
+
+    -   Labels for each student.
+
+        ```{r}
+        plot(grades_df$Math, grades_df$Science, main = "Math vs. Science Grades", xlab = "Math Grade", ylab = "Science Grade", pch = 19, col = "blue")
+        abline(lm(Science ~ Math, data = grades_df), col = "red")  # Add trend line
+        ```
+
+#### **Step 9: Bonus Challenge**
+
+16. Write a function `get_top_students` that:
+
+    -   Takes `grades_df` as input,
+
+    -   Returns a data frame containing only students with an average grade of 80 or above,
+
+    -   Plots a pie chart of their grade categories.
+
+        ```{r}
+        get_top_students <- function(grades_df) {
+          top_students <- subset(grades_df, Average >= 80)
+          pie(table(top_students$Grade_Category), main = "Grade Category Distribution of Top Students")
+          return(top_students)
+        }
+
+        top_students <- get_top_students(grades_df)  # Get top students
+        print(top_students)  # Print top students
+        ```

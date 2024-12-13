@@ -1,0 +1,72 @@
+# Pie Charts
+
+A pie chart is a circular graphical view of data.
+
+Use the `pie()` function to draw pie charts:
+
+```{r}
+shares <- c(10,40,20,30)
+
+pie(shares)
+```
+
+By default, the plotting of the first pie starts from the x-axis and move **counterclockwise**.
+
+**Note:** The size of each pie is determined by comparing the value with all the other values, by using this formula:
+
+The value divided by the sum of all values: `x/sum(x)`
+
+## Start Angle
+
+You can change the start angle of the pie chart with the `init.angle` parameter.
+
+The value of `init.angle` is defined with angle in degrees, where default angle is 0.
+
+```{r}
+ages <- c(23,54,11,7,5)
+
+pie(ages,init.angle=90)
+```
+
+## Labels and Header
+
+Use the `label` parameter to add a label to the pie chart, and use the `main` parameter to add a header:
+
+```{r}
+fruits <- c(10,50,20,5,15)
+flabels <- c("Apples","Grapes","Oranges","Melons","Lemons")
+
+pie(fruits,main="Fruits Distribution",label=flabels,init.angle=90)
+```
+
+## Colors
+
+You can add a color to each pie with the `col` parameter:
+
+```{r}
+share <- c(50,20,15,15)
+slabels <- c("Brian","Lucky","Trinity","Tevin","Tyrus")
+scolors <- c("blue","red","orange","green","grey")
+
+pie(share,main="Company Shares",label = slabels,col=scolors,init.angle = 90)
+```
+
+## Legend
+
+To add a list of explanation for each pie, use the `legend()` function:
+
+```{r}
+share <- c(50,20,15,15)
+slabels <- c("Brian","Lucky","Trinity","Tevin","Tyrus")
+scolors <- c("blue","red","orange","green","grey")
+
+pie(share,main="Company Shares",col=scolors,init.angle = 90)
+
+
+# Adding legend
+legend("topleft",slabels,fill=scolors,title="key")
+```
+
+The legend can be positioned as either:
+
+`bottomright`, `bottom`, `bottomleft`, `left`, `topleft`, `top`, `topright`, `right`, `center`

@@ -1,0 +1,22 @@
+```{r}
+data <- read.csv("data.csv")
+```
+
+```{r}
+summary(data)
+```
+
+```{r}
+ncol(data)
+nrow(data)
+```
+
+```{r}
+data[1]
+```
+
+```{r}
+plot(data[1],main="Duration Plot",xlab="X axis",ylab="Y axis",col="blue")
+
+legend("topleft",)
+```

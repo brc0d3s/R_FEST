@@ -1,0 +1,365 @@
+# What is R
+
+### R is a popular programming language used for statistical computing and graphical presentation.
+
+### Its most common use is to analyze and visualize data.
+
+## Why Use R?
+
+-   It is a great resource for data analysis, data visualization, data science and machine learning
+
+-   It provides many statistical techniques (such as statistical tests, classification, clustering and data reduction)
+
+-   It is easy to draw graphs in R, like pie charts, histograms, box plot, scatter plot, etc++
+
+-   It works on different platforms (Windows, Mac, Linux)
+
+-   It is open-source and free
+
+-   It has a large community support
+
+-   It has many packages (libraries of functions) that can be used to solve different problems
+
+# R Variable Naming Rules
+
+-   A variable name must start with a letter and can be a combination of letters, digits, period(.)\
+    and underscore(\_). If it starts with period(.), it cannot be followed by a digit.
+
+-   A variable name cannot start with a number or underscore (\_)
+
+-   Variable names are case-sensitive (age, Age and AGE are three different variables)
+
+-   Reserved words cannot be used as variables (TRUE, FALSE, NULL, if...)
+
+# R Data Types
+
+Basic data types in R can be divided into the following types:
+
+-   `numeric` - (10.5, 55, 787)
+
+-   `integer` - (1L, 55L, 100L, where the letter "L" declares this as an integer)
+
+-   `complex` - (9 + 3i, where "i" is the imaginary part)
+
+-   `character` (a.k.a. string) - ("k", "R is exciting", "FALSE", "11.5")
+
+-   `logical` (a.k.a. boolean) - (TRUE or FALSE)
+
+We can use the `class()` function to check the data type of a variable:
+
+```{r}
+x <- 34L
+class(x)
+```
+
+# R Numbers
+
+There are three number types in R:
+
+-   `numeric`
+
+-   `integer`
+
+-   `complex`
+
+```{r}
+x <- 10.5   # numeric
+y <- 10L    # integer
+z <- 1i     # complex
+
+x
+y
+z
+```
+
+## Type Conversion
+
+You can convert from one type to another with the following functions:
+
+```{r}
+as.numeric()
+as.integer()
+as.complex()
+```
+
+# Math Functions
+
+-   `min()` and `max()` functions can be used to find the lowest or highest number in a set
+
+    ```{r}
+    max(5, 10, 15)
+
+    min(5, 10, 15)
+    ```
+
+-   The `sqrt()` function returns the square root of a number
+
+    ```{r}
+    sqrt(64)
+    ```
+
+-   The `abs()` function returns the absolute (positive) value of a number
+
+    ```{r}
+    abs(-4.7)
+    ```
+
+-   The `ceiling()` function rounds a number upwards to its nearest integer, and the `floor()` function rounds a number downwards to its nearest integer, and returns the result
+
+    ```{r}
+    ceiling(1.4)
+
+    floor(1.4)
+    ```
+
+# R Strings Functions
+
+-   To find the number of characters in a string, use the `nchar()` function
+
+    ```{r}
+    xmas <- "Hello Chrismas"
+    nchar(xmas)
+    ```
+
+-   Use the `grepl()` function to check if a character or a sequence of characters are present in a string
+
+    ```{r}
+    str <- "Hello World!"
+
+    grepl("H", str)
+    grepl("Hello", str)
+    grepl("X", str)
+    ```
+
+-   Use the `paste()` function to merge/concatenate two strings
+
+    ```{r}
+    str1 <- "Hello"
+    str2 <- "World"
+
+    paste(str1, str2)
+    ```
+
+# R Operators
+
+R divides the operators in the following groups:
+
+-   Arithmetic operators
+
+-   Assignment operators
+
+-   Comparison operators
+
+-   Logical operators
+
+-   Miscellaneous operators
+
+# R If ... Else
+
+```{r}
+agex <- 56L
+
+if(agex >= 18L){
+  print("You are an adult")
+}
+```
+
+# If Else
+
+```{r}
+agey <- 17L
+
+if(agey >= 18L){
+  print("You are an adult")
+}else if(age < 18){
+  print("You are underage")
+}
+```
+
+# R Nested If
+
+```{r}
+x <- 41
+
+if (x > 10) {
+  print("Above ten")
+  if (x > 20) {
+    print("and also above 20!")
+  } else {
+    print("but not above 20.")
+  }
+} else {
+  print("below 10.")
+}
+```
+
+# R - AND OR Operators
+
+## AND
+
+The & symbol (and) is a logical operator, and is used to combine conditional statements
+
+```{r}
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b & c > a) {
+  print("Both conditions are true")
+}
+```
+
+## OR
+
+The `|` symbol (or) is a logical operator, and is used to combine conditional statements
+
+```{r}
+a <- 200
+b <- 33
+c <- 500
+
+if (a > b | a > c) {
+  print("At least one of the conditions is true")
+}
+```
+
+# R While Loop
+
+```{r}
+i <- 1
+
+while(i < 8){
+  print(i)
+  i <- i + 1
+}
+```
+
+# Break
+
+With the `break` statement, we can stop the loop even if the while condition is TRUE
+
+```{r}
+i <- 1
+while (i < 6) {
+  print(i)
+  i <- i + 1
+  if (i == 4) {
+    break
+  }
+}
+```
+
+# Next
+
+With the `next` statement, we can skip an iteration without terminating the loop
+
+```{r}
+i <- 0
+while (i < 6) {
+  i <- i + 1
+  if (i == 3) {
+    next
+  }
+  print(i)
+}
+```
+
+# R For Loop
+
+```{r}
+dice <- 1:6
+
+for(d in dice){
+  print(d)
+}
+```
+
+# R Functions
+
+A function is a block of code which only runs when it is called.
+
+You can pass data, known as parameters, into a function.
+
+A function can return data as a result.
+
+```{r}
+sumfunct <- function(x,y,z){
+  return (x * y * z)
+}
+
+print(sumfunct(45,6,7))
+```
+
+# R Nested Functions
+
+There are two ways to create a nested function:
+
+-   Call a function within another function.
+
+-   Write a function within a function.
+
+# R Function Recursion
+
+```{r}
+tri_recursion <- function(k) {
+  if (k > 0) {
+    result <- k + tri_recursion(k - 1)
+    print(result)
+  } else {
+    result = 0
+    return(result)
+  }
+}
+tri_recursion(6)
+```
+
+# R Global Variables
+
+Are Variables that are created outside of a function are known as **global** variables.
+
+Global variables can be used by everyone, both inside of functions and outside.
+
+If you create a variable with the same name inside a function, this variable will be local, and can only be used inside the function. The global variable with the same name will remain as it was, global and with the original value.
+
+```{r}
+txt <- "global variable"
+my_function <- function() {
+  txt = "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+txt # print txt
+```
+
+## The Global Assignment Operator
+
+Normally, when you create a variable inside a function, that variable is local, and can only be used inside that function.
+
+To create a global variable inside a function, you can use the **global assignment** operator `<<-`
+
+```{r}
+my_function <- function() {
+txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+print(txt)
+```
+
+Also, use the **global** assignment operator if you want to change a global variable inside a function:
+
+```{r}
+txt <- "awesome"
+my_function <- function() {
+  txt <<- "fantastic"
+  paste("R is", txt)
+}
+
+my_function()
+
+paste("R is", txt)
+```

@@ -1,0 +1,89 @@
+```{r}
+data <- read.csv("wine.csv",stringsAsFactors = FALSE)
+```
+
+```{r}
+data
+```
+
+```{r}
+summary(data)
+```
+
+```{r}
+
+wines <- factor(data$Type)
+wineTypes <- levels(wines)
+wineTypes
+
+cat("\n\n")
+
+# median for alcohols and malic.acid
+for(wine in wineTypes){
+  subset_data <- data[data$Type == wine, ]
+  
+  alcmed <- median(subset_data$Alcohol)
+  acidmed <- median(subset_data$Malic.Acid)
+  
+  cat("Wine:",wine,"Alcohol Median:",alcmed,"Acid Median:",acidmed,"\n")
+}
+```
+
+```{r}
+# Write an R program to count the number of observations with Alcohol greater than 13 and Proline less than 650.
+
+for(x in wineTypes){
+  sub_data <- data[data$Type == x,]
+  
+  Counts <- sum(sub_data$Alcohol > 13 & sub_data$Proline < 650)
+  
+  cat("Wine:",x,"Observation Counts:",Counts,"\n")
+  
+}
+```
+
+```{r}
+# Write an R program to produce a barplot showing the number of wines of each type in the data frame. 
+
+x <- wineTypes
+y <- c(sum(data$Type == "A"),sum(data$Type == "B"),sum(data$Type == "C"),sum(data$Type == "D"),sum(data$Type == "E"))
+
+barplot(y,names.arg = x,main="Wines",col="blue",xlab = "Wines",ylab = "Numbers")
+```
+
+Assignment
+
+```{r}
+distance <- seq(from=10,to=100,by=10)
+time <- seq(from=5,to=50,by=5)
+
+plot(distance,time,type="l",col="orange",main="Speed",xlab="Distance",ylab="Time")
+```
+
+```{r}
+age <- c(50,62,60,40,48,47,57,70,48,67)
+insulin <- c(16.5,10.8,32.3,19.3,14.2,11.3,15.5,15.8,16.2,11.2)
+plot(age,insulin,col="red",main="relationship")
+lines(age,fitted(lm(insulin ~ age)),col="blue")
+```
+
+```{r}
+M <- c(3,2,4,9,5)
+N <- c(1,2)
+Z <- M*N
+print(Z)
+```
+
+```{r}
+paste("everybody","is","a","warrior")
+```
+
+```{r}
+x <- c("a","b","c","c","d","a")
+x[1:4]
+```
+
+```{r}
+x <- c(1,2,NaN,NA,4)
+is.na(x)
+```
